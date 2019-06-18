@@ -173,9 +173,29 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906181940411_init.cs" />
+    <Compile Include="Migrations\201906181940411_init.Designer.cs">
+      <DependentUpon>201906181940411_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906182004435_ArtikalTabela.cs" />
+    <Compile Include="Migrations\201906182004435_ArtikalTabela.Designer.cs">
+      <DependentUpon>201906182004435_ArtikalTabela.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906182017015_KreiranjeTabeleOtpremnica.cs" />
+    <Compile Include="Migrations\201906182017015_KreiranjeTabeleOtpremnica.Designer.cs">
+      <DependentUpon>201906182017015_KreiranjeTabeleOtpremnica.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906182030299_DodavanjeTabeleStavkaOtpremnice.cs" />
+    <Compile Include="Migrations\201906182030299_DodavanjeTabeleStavkaOtpremnice.Designer.cs">
+      <DependentUpon>201906182030299_DodavanjeTabeleStavkaOtpremnice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Artikal.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Otpremnica.cs" />
+    <Compile Include="Models\StavkaOtpremnice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -251,6 +271,20 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201906181940411_init.resx">
+      <DependentUpon>201906181940411_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906182004435_ArtikalTabela.resx">
+      <DependentUpon>201906182004435_ArtikalTabela.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906182017015_KreiranjeTabeleOtpremnica.resx">
+      <DependentUpon>201906182017015_KreiranjeTabeleOtpremnica.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906182030299_DodavanjeTabeleStavkaOtpremnice.resx">
+      <DependentUpon>201906182030299_DodavanjeTabeleStavkaOtpremnice.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
