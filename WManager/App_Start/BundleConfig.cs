@@ -19,12 +19,21 @@ namespace WManager
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/myScripts").Include(
+                       "~/Scripts/notifications/Lobibox.js",
+                       "~/Scripts/notifications/notification-active.js",
+                       "~/Scripts/CudniNacinAlNasNacinJediniNaSvetu.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/Content/myStyles").Include(
+                        "~/Content/notifications/Lobibox.min.css",
+                        "~/Content/notifications/notifications.css"
+                ));
         }
     }
 }
