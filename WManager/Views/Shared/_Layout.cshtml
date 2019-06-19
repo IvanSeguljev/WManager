@@ -26,6 +26,8 @@
                     <li>@Html.ActionLink("Lista artikala", "Index", "Artikal")</li>
                     <li>@Html.ActionLink("Novi artikal", "UnesiNoviArtikal", "Artikal")</li>
                     <li>@Html.ActionLink("Izmena artikla", "IzmeniArtikal", "Artikal")</li>
+                    <li>@Html.ActionLink("Brisanje artikla", "BrisanjeArtikla", "Artikal")</li>
+                    <li>@Html.ActionLink("Skidanje sa stanja", "SkidanjeSaStanja", "Artikal")</li>
 
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -44,5 +46,27 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/myScripts")
     @RenderSection("scripts", required: false)
+    @if (TempData["AlertSuccess"] != null)
+    {
+        <script>
+             Lobibox.notify('success', {
+             pauseDelayOnHover: true,
+             continueDelayOnInactiveTab: false,
+             msg: "@TempData["AlertSuccess"]",
+             title: 'Uspeh'
+             });
+        </script>
+    }
+    @if (TempData["AlertError"] != null)
+    {
+        <script>
+             Lobibox.notify('error', {
+             pauseDelayOnHover: true,
+             continueDelayOnInactiveTab: false,
+             msg: "@TempData["AlertError"]",
+             title: 'Greška'
+    });
+        </script>
+    }
 </body>
 </html>
