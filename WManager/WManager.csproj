@@ -263,6 +263,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Artikal\Index.cshtml" />
     <Content Include="Views\Artikal\UnesiNoviArtikal.cshtml" />
+    <Content Include="Views\Artikal\IzmeniArtikal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

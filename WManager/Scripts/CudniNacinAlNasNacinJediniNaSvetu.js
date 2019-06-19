@@ -7,7 +7,9 @@ function onemoguciPolja() {
     var disabled = document.getElementsByClassName("shouldCheckFirst");
 
     for (d = 0; d < disabled.length; d++) {
+        disabled[d].value = "";
         disabled[d].setAttribute("disabled", "true");
+        
     }
 }
 function omoguciPolja() {

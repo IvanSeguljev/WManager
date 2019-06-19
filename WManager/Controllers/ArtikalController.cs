@@ -27,13 +27,35 @@ namespace WManager.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult UnesiNoviArtikal(Artikal noviArtikal)
+        public ActionResult UnesiNoviArtikal(Artikal artikal)
         {
             if(ModelState.IsValid)
             {
-                context.Artikli.Add(noviArtikal);
+                context.Artikli.Add(artikal);
                 context.SaveChanges();
                 return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult IzmeniArtikal()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult IzmeniArtikal(Artikal artikal)
+        {
+            if(ModelState.IsValid)
+            {
+                Artikal stari = context.Artikli.FirstOrDefault(x => x.Barkod == artikal.Barkod);
+                stari.Kolicina = artikal.Kolicina;
+                stari.Naziv = artikal.Naziv;
+                stari.ZemljaPorekla = artikal.ZemljaPorekla;
+                stari.Proizvodjac = artikal.Proizvodjac;
+
+                context.SaveChanges();
             }
             return RedirectToAction("Index");
         }

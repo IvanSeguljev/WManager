@@ -5,32 +5,32 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>UnesiNoviArtikal</h2>
+<h2>Izmeni artikal</h2>
 
 
-@using (Html.BeginForm("UnesiNoviArtikal","Artikal",FormMethod.Post)) 
+@using (Html.BeginForm("IzmeniArtikal", "Artikal", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Artikal</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.Barkod, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Barkod, new { htmlAttributes = new { @class = "form-control", @id = "barkodPolje",@onkeyup="onemoguciPolja()" } })
-            @Html.ValidationMessageFor(model => model.Barkod, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Barkod, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Barkod, new { htmlAttributes = new { @class = "form-control", @id = "barkodPolje", @onkeyup = "onemoguciPolja()" } })
+                @Html.ValidationMessageFor(model => model.Barkod, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-default" onclick="proveriArtikal()">Trazi artikal</button>
+            </div>
         </div>
-        <div class="col-md-2">
-            <button type="button" class="btn btn-default" onclick="proveriArtikal()">Trazi artikal</button>
-        </div>
-    </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Naziv, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Naziv, new { htmlAttributes = new { @class = "form-control shouldCheckFirst" } })
+                @Html.EditorFor(model => model.Naziv, new { htmlAttributes = new { @class = "form-control shouldCheckFirst",@id="naziv" } })
                 @Html.ValidationMessageFor(model => model.Naziv, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -38,7 +38,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Kolicina, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Kolicina, new { htmlAttributes = new { @class = "form-control shouldCheckFirst" } })
+                @Html.EditorFor(model => model.Kolicina, new { htmlAttributes = new { @class = "form-control shouldCheckFirst", @id = "kolicina" } })
                 @Html.ValidationMessageFor(model => model.Kolicina, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -46,7 +46,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ZemljaPorekla, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ZemljaPorekla, new { htmlAttributes = new { @class = "form-control shouldCheckFirst" } })
+                @Html.EditorFor(model => model.ZemljaPorekla, new { htmlAttributes = new { @class = "form-control shouldCheckFirst", @id="zemljaPorekla" } })
                 @Html.ValidationMessageFor(model => model.ZemljaPorekla, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -54,14 +54,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Proizvodjac, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Proizvodjac, new { htmlAttributes = new { @class = "form-control shouldCheckFirst" } })
+                @Html.EditorFor(model => model.Proizvodjac, new { htmlAttributes = new { @class = "form-control shouldCheckFirst", @id="proizvodjac" } })
                 @Html.ValidationMessageFor(model => model.Proizvodjac, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <button type="submit" class="btn btn-default shouldCheckFirst">Unesi novi</button>
+                <button type="submit" class="btn btn-default shouldCheckFirst" >Izmeni</button>
             </div>
         </div>
     </div>
@@ -73,7 +73,7 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-<script>
+    <script>
     function proveriArtikal() {
 
         var barkod = document.getElementById("barkodPolje").value
@@ -87,24 +87,29 @@
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
                     if (data.status == 1) {
-                        porukaNeuspeh("Artikal sa unetim barkodom već postoji!");
-                        onemoguciPolja();
+                        porukaUspeh("Uspesno pronadjen artikal");
+                        document.getElementById("naziv").value = data.artikal.Naziv;
+                        document.getElementById("kolicina").value = data.artikal.Kolicina;
+                        document.getElementById("zemljaPorekla").value = data.artikal.ZemljaPorekla;
+                        document.getElementById("proizvodjac").value = data.artikal.Proizvodjac;
+                        console.log(data);
+                        omoguciPolja();
                     }
                     if (data.status == 0) {
-                        porukaUspeh("Ne postoji, nastavi unos");
-                        omoguciPolja();
+                        porukaNeuspeh("Artikal sa unetim barkodom nije nadjen");
+                        onemoguciPolja();
                     }
                     if (data.status == 2) {
                         porukaNeuspeh("Poslat barkod pogresne duzine!");
                         onemoguciPolja();
                     }
                 }
-               
+
             });
         }
         else {
              porukaNeuspeh("Barkod mora imati 13 brojeva!");
         }
     }
-</script>
+    </script>
 }
