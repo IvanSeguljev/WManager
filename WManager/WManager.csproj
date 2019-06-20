@@ -171,6 +171,7 @@
     <Compile Include="Controllers\ArtikalController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RadnikController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -189,6 +190,10 @@
     <Compile Include="Migrations\201906182030299_DodavanjeTabeleStavkaOtpremnice.cs" />
     <Compile Include="Migrations\201906182030299_DodavanjeTabeleStavkaOtpremnice.Designer.cs">
       <DependentUpon>201906182030299_DodavanjeTabeleStavkaOtpremnice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906201029378_AddLAstAndFirstNameToUsers.cs" />
+    <Compile Include="Migrations\201906201029378_AddLAstAndFirstNameToUsers.Designer.cs">
+      <DependentUpon>201906201029378_AddLAstAndFirstNameToUsers.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -260,6 +265,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\notifications\Lobibox.js" />
     <Content Include="Scripts\notifications\notification-active.js" />
+    <Content Include="Scripts\ValidateEmail.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -304,6 +310,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Radnik\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -330,6 +337,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906182030299_DodavanjeTabeleStavkaOtpremnice.resx">
       <DependentUpon>201906182030299_DodavanjeTabeleStavkaOtpremnice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906201029378_AddLAstAndFirstNameToUsers.resx">
+      <DependentUpon>201906201029378_AddLAstAndFirstNameToUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

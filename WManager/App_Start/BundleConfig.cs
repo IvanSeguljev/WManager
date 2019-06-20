@@ -22,7 +22,8 @@ namespace WManager
             bundles.Add(new ScriptBundle("~/bundles/myScripts").Include(
                        "~/Scripts/notifications/Lobibox.js",
                        "~/Scripts/notifications/notification-active.js",
-                       "~/Scripts/CudniNacinAlNasNacinJediniNaSvetu.js"));
+                       "~/Scripts/CudniNacinAlNasNacinJediniNaSvetu.js",
+                       "~/Scripts/ValidateEmail.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
