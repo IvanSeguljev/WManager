@@ -147,7 +147,46 @@ namespace WManager.Controllers
             TempData["AlertError"] = "Doslo je do greske prilikom skidanja artikla sa stanja!";
             return RedirectToAction("index");
         }
+        /// <summary>
+        /// Vraca stranicu za unos parametara pretrage
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult PretragaArtikala()
+        {
+            return View();
+        }
 
+        /// <summary>
+        /// Vrsi pretragu artikala po prosledjenim parametrima
+        /// </summary>
+        /// <param name="Barkod"></param>
+        /// <param name="Naziv"></param>
+        /// <param name="ZemljaPorekla"></param>
+        /// <param name="Proizvodjac"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult TraziArtikal(string Barkod = "", string Naziv = "", string ZemljaPorekla = "", string Proizvodjac = "")
+        {
+            IQueryable<Artikal> rezultat = context.Artikli;
+            if(Barkod != "")
+            {
+                rezultat = rezultat.Where(x => x.Barkod == Barkod);
+            }
+            if(Naziv != "")
+            {
+                rezultat = rezultat.Where(x => x.Naziv == Naziv);
+            }
+            if(ZemljaPorekla != "")
+            {
+                rezultat = rezultat.Where(x => x.ZemljaPorekla == ZemljaPorekla);
+            }
+            if(Proizvodjac != "")
+            {
+                rezultat = rezultat.Where(x => x.Proizvodjac == Proizvodjac);
+            }
+            return View(rezultat.ToList());
+        }
         /// <summary>
         /// Za ajax, vrsi proveru da li artikal postoji i vraca status kod i artikal
         /// status kodovi: 0-nijeNadjen 1-nadjen 2-Neka druga greska

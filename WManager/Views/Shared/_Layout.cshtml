@@ -23,11 +23,13 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
+
                     <li>@Html.ActionLink("Lista artikala", "Index", "Artikal")</li>
                     <li>@Html.ActionLink("Novi artikal", "UnesiNoviArtikal", "Artikal")</li>
                     <li>@Html.ActionLink("Izmena artikla", "IzmeniArtikal", "Artikal")</li>
                     <li>@Html.ActionLink("Brisanje artikla", "BrisanjeArtikla", "Artikal")</li>
                     <li>@Html.ActionLink("Skidanje sa stanja", "SkidanjeSaStanja", "Artikal")</li>
+                    <li>@Html.ActionLink("Pretraga artikala", "PretragaArtikala", "Artikal")</li>
 
                 </ul>
                 @Html.Partial("_LoginPartial")

@@ -1,0 +1,65 @@
+﻿@model WManager.Models.Artikal
+
+@{
+    ViewBag.Title = "Trazi artikal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Trazi artikal</h2>
+
+
+@using (Html.BeginForm("TraziArtikal", "Artikal", FormMethod.Get))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Artikal</h4>
+        <hr />
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.Barkod, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Barkod, new { htmlAttributes = new { @class = "form-control", @id = "barkodPolje"} })
+                
+            </div>
+           
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Naziv, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Naziv, new { htmlAttributes = new { @class = "form-control ", @id = "naziv" } })
+               
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ZemljaPorekla, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ZemljaPorekla, new { htmlAttributes = new { @class = "form-control ", @id = "zemljaPorekla" } })
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Proizvodjac, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Proizvodjac, new { htmlAttributes = new { @class = "form-control ", @id = "proizvodjac" } })
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-default">Trazi</button>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
