@@ -38,5 +38,7 @@ namespace WManager.Models
         {
             return new ApplicationDbContext();
         }
+
+        
     }
 }

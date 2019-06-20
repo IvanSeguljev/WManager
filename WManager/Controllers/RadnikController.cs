@@ -14,11 +14,49 @@ namespace WManager.Controllers
         {
             context = new ApplicationDbContext();
         }
-        // GET: Radnik
+        /// <summary>
+        /// Prikazuje listu radnika
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
         public ActionResult Index()
+        {
+            
+            return View(context.Users.ToList());
+        }
+        /// <summary>
+        /// Prikazuje stranicu za izmenu radnika
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult IzmenaRadnika()
         {
             return View();
         }
+        /// <summary>
+        /// Vrsi izmenu podataka o radniku u bazi.
+        /// </summary>
+        /// <param name="radnik">izmenjeni radnik</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult IzmenaRadnika(ApplicationUser radnik)
+        {
+            ApplicationUser stari = context.Users.FirstOrDefault(x => x.Email == radnik.Email);
+            if(stari != null)
+            {
+                stari.FirstName = radnik.FirstName;
+                stari.LastName = radnik.LastName;
+                stari.PhoneNumber = radnik.PhoneNumber;
+                stari.UserName = radnik.UserName;
+                stari.Email = radnik.UserName; //Username i email su prakticno isti. Na stranici za izmenu se username koristi za izmenu, a email za proveru postojanja
+                context.SaveChanges();
+                TempData["AlertSuccess"] = "uspesno izmenjen radnik!";
+                return RedirectToAction("Index");
+            }
+            TempData["AlertError"] = "Doslo je do greske prilikom izmene radnika";
+            return RedirectToAction("Index");
+        }
+
         /// <summary>
         /// Za ajax, vrsi proveru da li radnik postoji i vraca status kod i radnika
         /// status kodovi: 0-nijeNadjen 1-nadjen 2-Neka druga greska

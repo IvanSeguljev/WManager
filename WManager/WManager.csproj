@@ -307,10 +307,11 @@
     <Content Include="Views\Artikal\SkidanjeSaStanja.cshtml" />
     <Content Include="Views\Artikal\PretragaArtikala.cshtml" />
     <Content Include="Views\Artikal\TraziArtikal.cshtml" />
+    <Content Include="Views\Radnik\Index.cshtml" />
+    <Content Include="Views\Radnik\IzmenaRadnika.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Radnik\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
