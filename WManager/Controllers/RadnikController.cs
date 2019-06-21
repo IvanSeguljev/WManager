@@ -41,22 +41,91 @@ namespace WManager.Controllers
         [HttpPost]
         public ActionResult IzmenaRadnika(ApplicationUser radnik)
         {
-            ApplicationUser stari = context.Users.FirstOrDefault(x => x.Email == radnik.Email);
-            if(stari != null)
-            {
-                stari.FirstName = radnik.FirstName;
-                stari.LastName = radnik.LastName;
-                stari.PhoneNumber = radnik.PhoneNumber;
-                stari.UserName = radnik.UserName;
-                stari.Email = radnik.UserName; //Username i email su prakticno isti. Na stranici za izmenu se username koristi za izmenu, a email za proveru postojanja
-                context.SaveChanges();
-                TempData["AlertSuccess"] = "uspesno izmenjen radnik!";
-                return RedirectToAction("Index");
-            }
+           
+                ApplicationUser stari = context.Users.FirstOrDefault(x => x.Email == radnik.Email);
+                if (stari != null)
+                {
+                    stari.FirstName = radnik.FirstName;
+                    stari.LastName = radnik.LastName;
+                    stari.PhoneNumber = radnik.PhoneNumber;
+                    stari.UserName = radnik.UserName;
+                    stari.Email = radnik.UserName; //Username i email su prakticno isti. Na stranici za izmenu se username koristi za izmenu, a email za proveru postojanja
+                    context.SaveChanges();
+                    TempData["AlertSuccess"] = "uspesno izmenjen radnik!";
+                    return RedirectToAction("Index");
+                }
+            
             TempData["AlertError"] = "Doslo je do greske prilikom izmene radnika";
             return RedirectToAction("Index");
         }
+        /// <summary>
+        /// Vraca stranicu za brisanje radnika
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult BrisanjeRadnika()
+        {
+            return View();
+        }
+        /// <summary>
+        /// Brise radnika iz baze
+        /// </summary>
+        /// <param name="Email">Imejl adresa radnika za brisanje</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult BrisanjeRadnika(string Email)
+        {
+            ApplicationUser zaBrisanje = context.Users.FirstOrDefault(x => x.Email == Email);
+            if(zaBrisanje != null)
+            {
+                context.Users.Remove(zaBrisanje);
+                context.SaveChanges();
+                TempData["AlertSuccess"] = "uspesno obrisan radnik!";
+                return RedirectToAction("Index");
+            }
 
+            TempData["AlertError"] = "Doslo je do greske prilikom brisanja radnika";
+            return RedirectToAction("Index");
+        }
+        /// <summary>
+        /// vraca stranicu za trazenje radnika
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult TraziRadnika()
+        {
+            return View();
+        }
+        /// <summary>
+        /// Prikazuje rezultate pretrage
+        /// </summary>
+        /// <param name="Email"></param>
+        /// <param name="FirstName"></param>
+        /// <param name="LastName"></param>
+        /// <param name="PhoneNumber"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult PretragaRadnika(string Email = "", string FirstName = "", string LastName = "", string PhoneNumber = "")
+        {
+            IQueryable<ApplicationUser> radnici = context.Users;
+            if (Email != "")
+            {
+                radnici = radnici.Where(x => x.Email == Email);
+            }
+            if(FirstName != "")
+            {
+                radnici = radnici.Where(x => x.FirstName == FirstName);
+            }
+            if(LastName != "")
+            {
+                radnici = radnici.Where(x => x.LastName == LastName);
+            }
+            if(PhoneNumber != "")
+            {
+                radnici = radnici.Where(x => x.PhoneNumber == PhoneNumber);
+            }
+            return View(radnici.ToList());
+        }
         /// <summary>
         /// Za ajax, vrsi proveru da li radnik postoji i vraca status kod i radnika
         /// status kodovi: 0-nijeNadjen 1-nadjen 2-Neka druga greska
