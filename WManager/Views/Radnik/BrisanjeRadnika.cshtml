@@ -1,0 +1,96 @@
+﻿@model WManager.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "BrisanjeRadnika";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Brisanje radnika</h2>
+
+@using (Html.BeginForm("BrisanjeRadnika", "Radnik", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>ApplicationUser</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+
+        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @onkeyup = "onemoguciPolja()", @id = "emailPolje" })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-2">
+            <button type="button" class="btn btn-default" onclick="proveriRadnika()">Trazi radnika</button>
+        </div>
+
+    </div>
+    <div class="form-group">
+        <p id="podaciONadjenom">
+
+        </p>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-default shouldCheckFirst">Obriši</button>
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+    function proveriRadnika() {
+
+        var email = document.getElementById("emailPolje").value
+
+        if (proveriEmail(email)) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("TraziRadnika","Radnik")',
+                data: '{Email: "' + document.getElementById("emailPolje").value + '"}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    if (data.status == 1) {
+                        porukaUspeh("Radnik uspesno nadjen");
+                        document.getElementById("podaciONadjenom").innerHTML =
+                            "<h4>Podaci o traženom radniku</h4>"+
+                            "Ime: " + data.radnik.FirstName + "<br/>" +
+                            "Prezime: " + data.radnik.LastName + "<br/>" +
+                            "Mejl: " + data.radnik.Email + "<br/>" +
+                            "Telefon: " + data.radnik.PhoneNumber + "<br/>";
+
+                        omoguciPolja();
+                    }
+                    if (data.status == 0) {
+                        porukaNeuspeh("Radnik sa unetom email adresom nije nadjen!");
+
+                        onemoguciPolja();
+                    }
+                    if (data.status == 2) {
+                        porukaNeuspeh("Greska pri trazenju radnika!");
+
+                        onemoguciPolja();
+                    }
+                }
+
+            });
+        }
+        else {
+            porukaNeuspeh("Morate uneti ispravan email!");
+
+        }
+    }
+    </script>
+}
