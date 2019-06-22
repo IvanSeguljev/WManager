@@ -171,6 +171,7 @@
     <Compile Include="Controllers\ArtikalController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OtpremnicaController.cs" />
     <Compile Include="Controllers\RadnikController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -194,6 +195,14 @@
     <Compile Include="Migrations\201906201029378_AddLAstAndFirstNameToUsers.cs" />
     <Compile Include="Migrations\201906201029378_AddLAstAndFirstNameToUsers.Designer.cs">
       <DependentUpon>201906201029378_AddLAstAndFirstNameToUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906220829361_dodavanjeKolicineNaStavkuOtpremnice.cs" />
+    <Compile Include="Migrations\201906220829361_dodavanjeKolicineNaStavkuOtpremnice.Designer.cs">
+      <DependentUpon>201906220829361_dodavanjeKolicineNaStavkuOtpremnice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906221009598_noAI.cs" />
+    <Compile Include="Migrations\201906221009598_noAI.Designer.cs">
+      <DependentUpon>201906221009598_noAI.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -314,6 +323,7 @@
     <Content Include="Views\Radnik\BrisanjeRadnika.cshtml" />
     <Content Include="Views\Radnik\TraziRadnika.cshtml" />
     <Content Include="Views\Radnik\PretragaRadnika.cshtml" />
+    <Content Include="Views\Otpremnica\KreiranjeOtpremnice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -346,6 +356,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906201029378_AddLAstAndFirstNameToUsers.resx">
       <DependentUpon>201906201029378_AddLAstAndFirstNameToUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906220829361_dodavanjeKolicineNaStavkuOtpremnice.resx">
+      <DependentUpon>201906220829361_dodavanjeKolicineNaStavkuOtpremnice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906221009598_noAI.resx">
+      <DependentUpon>201906221009598_noAI.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

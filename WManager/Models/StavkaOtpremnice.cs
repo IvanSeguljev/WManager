@@ -19,7 +19,9 @@ namespace WManager.Models
         [Column(Order = 1)]
         [ForeignKey("Artikal")]
         public string Barkod { get; set; }
-        
+        [Required]
+        public int Kolicina { get; set; }
+
         public Artikal Artikal { get; set; }
     }
 }

@@ -9,8 +9,9 @@ namespace WManager.Models
 {
     public class Otpremnica
     {
-        [Key]
-        [Required]
+        
+        
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int OtpremnicaId { get; set; }
         [Required]
         public string MenadzerId { get; set; }
@@ -20,5 +21,6 @@ namespace WManager.Models
         public string Lokacija { get; set; }
         [Required]
         public DateTime Datum { get; set; }
+        public List<StavkaOtpremnice> Stavke { get; set; }
     }
 }
