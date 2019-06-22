@@ -15,8 +15,8 @@
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login100-form validate-form flex-sb flex-w", role = "form" }))
             {
                 @Html.AntiForgeryToken()
-                <span class="login100-form-title p-b-32">
-                   
+                <span class="login100-form-title p-b-32" style="padding-left:40px;">
+                   <img src="~/Content/Images/Logo.png"/>
                 </span>               
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })               
                     <span class="txt1 p-b-11">
