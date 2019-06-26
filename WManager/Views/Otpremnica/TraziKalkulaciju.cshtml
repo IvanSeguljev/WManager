@@ -1,0 +1,60 @@
+﻿@model IEnumerable<WManager.Models.Otpremnica>
+
+@{
+    ViewBag.Title = "TraziKalkulaciju";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>TraziKalkulaciju</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" id="otpremniceTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OtpremnicaId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lokacija)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Datum)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OtpremnicaId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lokacija)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Datum)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.OtpremnicaId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.OtpremnicaId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.OtpremnicaId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+
+    <script src="~/Scripts/datatables/datatables.min.js"></script>
+    <link href="~/Scripts/datatables/datatables.min.css" rel="stylesheet" />
+    <script>
+        $(document).ready(function () {
+            $('#otpremniceTable').DataTable();
+        });
+    </script>
+}

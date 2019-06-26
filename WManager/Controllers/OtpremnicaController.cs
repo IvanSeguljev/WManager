@@ -25,6 +25,13 @@ namespace WManager.Controllers
         {
             return View();
         }
+        /// <summary>
+        /// Kreira novu otpremnicu
+        /// </summary>
+        /// <param name="id">ID otpremnice</param>
+        /// <param name="mesto">Mesto otpremnice</param>
+        /// <param name="stavke">Stavke otpremnice</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult KreiranjeOtpremnice(int id, string mesto, List<StavkaOtpremnice> stavke)
         {
@@ -35,18 +42,73 @@ namespace WManager.Controllers
             otpremnica.Lokacija = mesto;
             otpremnica.Datum = DateTime.Now;
             context.Otpremnice.Add(otpremnica);
-            
-            foreach(StavkaOtpremnice s in stavke)
+
+            foreach (StavkaOtpremnice s in stavke)
             {
                 s.OtpremnicaId = id;
-              
+
                 context.StavkeOtpremnice.Add(s);
                 context.Artikli.First(x => x.Barkod == s.Barkod).Kolicina -= s.Kolicina;
             }
-            
+
             context.SaveChanges();
             return Json("");
 
+        }
+
+        /// <summary>
+        /// Vraca stranicu za pretragu kalkulacija
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult PretragaKalkulacija()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult TraziKalkulaciju(int OtpremnicaId =0,string Lokacija = "", string Datum = "")
+        {
+            IQueryable<Otpremnica> kveri = context.Otpremnice;
+            if(OtpremnicaId != 0)
+            {
+                kveri = kveri.Where(x => x.OtpremnicaId == OtpremnicaId);
+            }
+            if(Lokacija != "")
+            {
+                kveri = kveri.Where(x => x.Lokacija == Lokacija);
+            }
+            if(Datum != "")
+            {
+                DateTime dat = new DateTime();
+                try
+                {
+                    dat = Convert.ToDateTime(Datum);
+                }
+                catch(Exception ex)
+                {
+                    TempData["AlertError"] = "Uneti datum je pogresnog formata";
+                    return RedirectToAction("PretragaKalkulacija");
+                }
+                kveri = kveri.Where(x => x.Datum.Year == dat.Year && x.Datum.Month == dat.Month && x.Datum.Day == dat.Day);
+            }
+            
+            List<Otpremnica> otpremnice = kveri.ToList();
+           if(otpremnice.Count == 1)
+            {
+                DetaljiOtpremniceViewModel vm = new DetaljiOtpremniceViewModel();
+               
+                vm.Otpremnica =otpremnice[0];
+                vm.Menadzer = context.Users.FirstOrDefault(x=>x.Id == vm.Otpremnica.MenadzerId);
+                List<StavkaOtpremnice> stavke = context.StavkeOtpremnice.Where(x => x.OtpremnicaId == vm.Otpremnica.OtpremnicaId).ToList();
+                foreach(StavkaOtpremnice s in stavke)
+                {
+                    s.Artikal = context.Artikli.FirstOrDefault(x => x.Barkod == s.Barkod);
+                }
+                vm.Stavke = stavke;
+                return View("DetaljiOtpremnice",vm);
+            }
+            return View(otpremnice);
         }
         /// <summary>
         /// Za ajax, vrsi proveru da li artikal postoji i vraca status kod i artikal

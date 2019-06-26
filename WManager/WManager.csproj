@@ -207,6 +207,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Artikal.cs" />
+    <Compile Include="Models\DetaljiOtpremniceViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Otpremnica.cs" />
@@ -327,6 +328,9 @@
     <Content Include="Views\Otpremnica\KreiranjeOtpremnice.cshtml" />
     <Content Include="Views\Artikal\DetaljiArtikla.cshtml" />
     <Content Include="Views\Radnik\DetaljiRadnika.cshtml" />
+    <Content Include="Views\Otpremnica\PretragaKalkulacija.cshtml" />
+    <Content Include="Views\Otpremnica\TraziKalkulaciju.cshtml" />
+    <Content Include="Views\Otpremnica\DetaljiOtpremnice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

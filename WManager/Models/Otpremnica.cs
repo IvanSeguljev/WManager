@@ -14,8 +14,9 @@ namespace WManager.Models
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int OtpremnicaId { get; set; }
         [Required]
+        [ForeignKey("Menadzer")]
         public string MenadzerId { get; set; }
-        [ForeignKey("MenadzerId")]
+        
         public ApplicationUser Menadzer { get; set; }
         [Required]
         public string Lokacija { get; set; }
