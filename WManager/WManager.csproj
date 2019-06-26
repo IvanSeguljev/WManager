@@ -325,6 +325,8 @@
     <Content Include="Views\Radnik\TraziRadnika.cshtml" />
     <Content Include="Views\Radnik\PretragaRadnika.cshtml" />
     <Content Include="Views\Otpremnica\KreiranjeOtpremnice.cshtml" />
+    <Content Include="Views\Artikal\DetaljiArtikla.cshtml" />
+    <Content Include="Views\Radnik\DetaljiRadnika.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

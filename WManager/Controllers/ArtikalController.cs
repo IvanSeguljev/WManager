@@ -185,7 +185,12 @@ namespace WManager.Controllers
             {
                 rezultat = rezultat.Where(x => x.Proizvodjac == Proizvodjac);
             }
-            return View(rezultat.ToList());
+            List<Artikal> artikli = rezultat.ToList();
+            if(artikli.Count == 1)
+            {
+                return View("DetaljiArtikla",artikli[0]);
+            }
+            return View(artikli);
         }
         /// <summary>
         /// Za ajax, vrsi proveru da li artikal postoji i vraca status kod i artikal
