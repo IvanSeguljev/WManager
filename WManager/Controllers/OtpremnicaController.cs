@@ -7,6 +7,7 @@ using WManager.Models;
 
 namespace WManager.Controllers
 {
+    [Authorize(Roles = "Menadzer")]
     public class OtpremnicaController : Controller
     {
         ApplicationDbContext context;

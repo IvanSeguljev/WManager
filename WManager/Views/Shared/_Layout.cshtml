@@ -25,7 +25,10 @@
                     <li>
                         <ul class="nav navbar-nav subitem" id="subitem" style="display:none; width: 100% !important">
                             <li>@Html.ActionLink("Lista artikala", "Index", "Artikal")</li>
-                            <li>@Html.ActionLink("Novi artikal", "UnesiNoviArtikal", "Artikal")</li>
+                            @if (User.IsInRole("Menadzer"))
+                            {
+                                <li>@Html.ActionLink("Novi artikal", "UnesiNoviArtikal", "Artikal")</li>
+                            }
                             <li>@Html.ActionLink("Izmena artikla", "IzmeniArtikal", "Artikal")</li>
                             <li>@Html.ActionLink("Brisanje artikla", "BrisanjeArtikla", "Artikal")</li>
                             <li>@Html.ActionLink("Skidanje sa stanja", "SkidanjeSaStanja", "Artikal")</li>
@@ -34,32 +37,34 @@
                         </ul>
 
                     </li>
-                    <li class="sideItem" onclick="openSubitem2('subitem2')">
-                        Radnici
-                    </li>
-                    <li>
-                        <ul class="nav navbar-nav subitem" id="subitem2" style="display:none; width: 100% !important">
-                            <li>@Html.ActionLink("Lista radnika", "Index", "Radnik")</li>
-                            <li>@Html.ActionLink("Izmena radnika", "IzmenaRadnika", "Radnik")</li>
-                            <li>@Html.ActionLink("brisanje radnika", "BrisanjeRadnika", "Radnik")</li>
-                            <li>@Html.ActionLink("trazi radnika", "TraziRadnika", "Radnik")</li>
-                            <li>@Html.ActionLink("Izmena radnika", "IzmeniRadnika", "Radnik")</li>
-                            <li>@Html.ActionLink("dodavanje radnika", "Register", "Account")</li>
-                        </ul>
+                    @if (User.IsInRole("Menadzer"))
+                    {
+                        <li class="sideItem" onclick="openSubitem2('subitem2')">
+                            Radnici
+                        </li>
+                        <li>
+                            <ul class="nav navbar-nav subitem" id="subitem2" style="display:none; width: 100% !important">
+                                <li>@Html.ActionLink("Lista radnika", "Index", "Radnik")</li>
+                                <li>@Html.ActionLink("Izmena radnika", "IzmenaRadnika", "Radnik")</li>
+                                <li>@Html.ActionLink("brisanje radnika", "BrisanjeRadnika", "Radnik")</li>
+                                <li>@Html.ActionLink("trazi radnika", "TraziRadnika", "Radnik")</li>
+                                <li>@Html.ActionLink("Izmena radnika", "IzmeniRadnika", "Radnik")</li>
+                                <li>@Html.ActionLink("dodavanje radnika", "Register", "Account")</li>
+                            </ul>
 
-                    </li>
-                    <li class="sideItem" onclick="openSubitem3('subitem3')">
-                        Otpremnice
-                    </li>
-                    <li>
-                        <ul class="nav navbar-nav subitem" id="subitem3" style="display:none; width: 100% !important">
-                            <li>@Html.ActionLink("Kreiranje otpremnice", "KreiranjeOtpremnice", "Otpremnica")</li>
-                            <li>@Html.ActionLink("Pretraga kalkulacija", "PretragaKalkulacija", "Otpremnica")</li>
-                        </ul>
+                        </li>
+                        <li class="sideItem" onclick="openSubitem3('subitem3')">
+                            Otpremnice
+                        </li>
+                        <li>
+                            <ul class="nav navbar-nav subitem" id="subitem3" style="display:none; width: 100% !important">
+                                <li>@Html.ActionLink("Kreiranje otpremnice", "KreiranjeOtpremnice", "Otpremnica")</li>
+                                <li>@Html.ActionLink("Pretraga kalkulacija", "PretragaKalkulacija", "Otpremnica")</li>
+                            </ul>
 
-                    </li>
-
-                </ul>
+                        </li>
+                    }
+                    </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
