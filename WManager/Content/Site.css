@@ -22,3 +22,66 @@ select,
 textarea {
     max-width: 280px;
 }
+.nav-sidebar {
+    position: absolute;
+    background-color: #ff9955;
+    margin-left: 0 !important;
+    left: 0 !important;
+    width: 200px;
+    top: 51px;
+    -webkit-box-shadow: 0px 25px 40px 0px rgba(127,127,127,0.3);
+    -moz-box-shadow: 0px 25px 40px 0px rgba(127,127,127,0.3);
+    box-shadow: 0px 25px 40px 0px rgba(127,127,127,0.3);
+}
+
+.subitem {
+    background-color: #ffbe50 !important;
+}
+.sideItem {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    color: #808080;
+
+    line-height: 20px;
+    cursor: pointer;
+}
+.menu-img{
+    float: left;
+    height: 30px;
+    width: 30px;
+    position: relative;
+}
+.toggleSidebar{
+    position:absolute;
+    background-color: transparent;
+    border: none;
+    padding: 10px;
+}
+.header-nav {
+    margin-left: 2px !important;
+    padding-left: 0px !important;
+    width: auto !important;
+    color: black;
+    background-color: #515151;
+    border: none !important;
+    -webkit-box-shadow: 0px 25px 40px 0px rgba(127,127,127,0.3);
+    -moz-box-shadow: 0px 25px 40px 0px rgba(127,127,127,0.3);
+    box-shadow: 0px 25px 40px 0px rgba(127,127,127,0.3);
+}
+
+
+
+.navbar-inverse {
+    background-color: #515151;
+    border-color: #515151;
+}
+
+.login100-form-btn {
+    background-color: #ff9955 !important;
+    color: #515151 !important;
+}
+    .login100-form-btn :hover {
+        background-color: #ffbe50 !important;
+        color: #515151 !important;
+    }

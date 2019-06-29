@@ -10,46 +10,87 @@
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        <div class="container header-nav">
+            <div class="navbar-heade header-navr">
+                <button class="toggleSidebar" onclick="openSidebar('sidebar')"> <img src="~/Content/Images/menu.png" alt="• • •" class="menu-img" /> </button>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
+            <div>
+                <ul class="nav navbar-nav nav-sidebar" id="sidebar" style="display:none;">
 
-                    
+                    @*zameniti nazive*@
+
+                    <li class="sideItem" onclick="openSubitem('subitem')" style="padding-top: 10px; padding-bottom: 10px; line-height: 20px;">
+                        Artikli
+                    </li>
+                    <li>
+                        <ul class="nav navbar-nav subitem" id="subitem" style="display:none; width: 100% !important">
+                            <li>@Html.ActionLink("Lista artikala", "Index", "Artikal")</li>
+                            <li>@Html.ActionLink("Novi artikal", "UnesiNoviArtikal", "Artikal")</li>
+                            <li>@Html.ActionLink("Izmena artikla", "IzmeniArtikal", "Artikal")</li>
+                            <li>@Html.ActionLink("Brisanje artikla", "BrisanjeArtikla", "Artikal")</li>
+                            <li>@Html.ActionLink("Skidanje sa stanja", "SkidanjeSaStanja", "Artikal")</li>
+                            <li>@Html.ActionLink("Pretraga artikala", "PretragaArtikala", "Artikal")</li>
+
+                        </ul>
+
+                    </li>
+                    <li class="sideItem" onclick="openSubitem2('subitem2')">
+                        Radnici
+                    </li>
+                    <li>
+                        <ul class="nav navbar-nav subitem" id="subitem2" style="display:none; width: 100% !important">
+                            <li>@Html.ActionLink("Lista radnika", "Index", "Radnik")</li>
+                            <li>@Html.ActionLink("Izmena radnika", "IzmenaRadnika", "Radnik")</li>
+                            <li>@Html.ActionLink("brisanje radnika", "BrisanjeRadnika", "Radnik")</li>
+                        </ul>
+
+                    </li>
+
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
     <div class="container body-content">
-        <h1>OVE LINKOVE POTRPAJTE U NAVBAR</h1>
-        <ul>
-            <li>@Html.ActionLink("Lista artikala", "Index", "Artikal")</li>
-            <li>@Html.ActionLink("Novi artikal", "UnesiNoviArtikal", "Artikal")</li>
-            <li>@Html.ActionLink("Izmena artikla", "IzmeniArtikal", "Artikal")</li>
-            <li>@Html.ActionLink("Brisanje artikla", "BrisanjeArtikla", "Artikal")</li>
-            <li>@Html.ActionLink("Skidanje sa stanja", "SkidanjeSaStanja", "Artikal")</li>
-            <li>@Html.ActionLink("Pretraga artikala", "PretragaArtikala", "Artikal")</li>
-            <li>@Html.ActionLink("Lista radnika", "Index", "Radnik")</li>
-            <li>@Html.ActionLink("Izmena radnika", "IzmenaRadnika", "Radnik")</li>
-            <li>@Html.ActionLink("brisanje radnika", "BrisanjeRadnika", "Radnik")</li>
-        </ul>
+       
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - W-Manager</p>
         </footer>
     </div>
 
+    <script>
+
+    function openSidebar() {
+        if (document.getElementById('sidebar').style.display = 'none')
+            document.getElementById('sidebar').style.display = 'inline-grid';
+        else if (document.getElementById('sidebar').style.display = 'inline-grid')
+            document.getElementById('sidebar').style.display = 'none';
+       
+    }
+
+    function openSubitem() {
+        if (document.getElementById('subitem').style.display = 'none')
+            document.getElementById('subitem').style.display = 'inline-grid';
+        else if (document.getElementById('subitem').style.display = 'inline-grid')
+            document.getElementById('subitem').style.display = 'none';
+    }
+     function openSubitem2() {
+        if (document.getElementById('subitem2').style.display = 'none')
+            document.getElementById('subitem2').style.display = 'inline-grid';
+        else if (document.getElementById('subitem2').style.display = 'inline-grid')
+            document.getElementById('subitem2').style.display = 'none';
+    }
+
+
+    </script>
+
+
+
+
+    @Scripts.Render("~/Scripts/Layout/toggle.js")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/myScripts")

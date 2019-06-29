@@ -210,6 +210,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\menu.png" />
     <Content Include="Content\Login\main.css" />
     <Content Include="Content\Login\util.css" />
     <Content Include="Content\notifications\Lobibox.min.css" />
@@ -220,6 +221,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\_menu.scss" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\CudniNacinAlNasNacinJediniNaSvetu.js" />
     <Content Include="Scripts\datatables\DataTables-1.10.18\css\dataTables.bootstrap.css" />
@@ -264,6 +266,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Layout\toggle.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\notifications\Lobibox.js" />
     <Content Include="Scripts\notifications\notification-active.js" />
