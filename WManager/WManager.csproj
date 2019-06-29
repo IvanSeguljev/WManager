@@ -171,6 +171,7 @@
     <Compile Include="Controllers\ArtikalController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OtpremnicaController.cs" />
     <Compile Include="Controllers\RadnikController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -195,9 +196,18 @@
     <Compile Include="Migrations\201906201029378_AddLAstAndFirstNameToUsers.Designer.cs">
       <DependentUpon>201906201029378_AddLAstAndFirstNameToUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906220829361_dodavanjeKolicineNaStavkuOtpremnice.cs" />
+    <Compile Include="Migrations\201906220829361_dodavanjeKolicineNaStavkuOtpremnice.Designer.cs">
+      <DependentUpon>201906220829361_dodavanjeKolicineNaStavkuOtpremnice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906221009598_noAI.cs" />
+    <Compile Include="Migrations\201906221009598_noAI.Designer.cs">
+      <DependentUpon>201906221009598_noAI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Artikal.cs" />
+    <Compile Include="Models\DetaljiOtpremniceViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Otpremnica.cs" />
@@ -210,6 +220,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\Logo.png" />
     <Content Include="Content\Images\menu.png" />
     <Content Include="Content\Login\main.css" />
     <Content Include="Content\Login\util.css" />
@@ -221,7 +232,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Content\_menu.scss" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\CudniNacinAlNasNacinJediniNaSvetu.js" />
     <Content Include="Scripts\datatables\DataTables-1.10.18\css\dataTables.bootstrap.css" />
@@ -266,7 +276,6 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\Layout\toggle.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\notifications\Lobibox.js" />
     <Content Include="Scripts\notifications\notification-active.js" />
@@ -317,6 +326,12 @@
     <Content Include="Views\Radnik\BrisanjeRadnika.cshtml" />
     <Content Include="Views\Radnik\TraziRadnika.cshtml" />
     <Content Include="Views\Radnik\PretragaRadnika.cshtml" />
+    <Content Include="Views\Otpremnica\KreiranjeOtpremnice.cshtml" />
+    <Content Include="Views\Artikal\DetaljiArtikla.cshtml" />
+    <Content Include="Views\Radnik\DetaljiRadnika.cshtml" />
+    <Content Include="Views\Otpremnica\PretragaKalkulacija.cshtml" />
+    <Content Include="Views\Otpremnica\TraziKalkulaciju.cshtml" />
+    <Content Include="Views\Otpremnica\DetaljiOtpremnice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -349,6 +364,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906201029378_AddLAstAndFirstNameToUsers.resx">
       <DependentUpon>201906201029378_AddLAstAndFirstNameToUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906220829361_dodavanjeKolicineNaStavkuOtpremnice.resx">
+      <DependentUpon>201906220829361_dodavanjeKolicineNaStavkuOtpremnice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906221009598_noAI.resx">
+      <DependentUpon>201906221009598_noAI.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

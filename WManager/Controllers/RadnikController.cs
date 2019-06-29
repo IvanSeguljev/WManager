@@ -107,24 +107,29 @@ namespace WManager.Controllers
         [HttpGet]
         public ActionResult PretragaRadnika(string Email = "", string FirstName = "", string LastName = "", string PhoneNumber = "")
         {
-            IQueryable<ApplicationUser> radnici = context.Users;
+            IQueryable<ApplicationUser> kveri = context.Users;
             if (Email != "")
             {
-                radnici = radnici.Where(x => x.Email == Email);
+                kveri = kveri.Where(x => x.Email == Email);
             }
             if(FirstName != "")
             {
-                radnici = radnici.Where(x => x.FirstName == FirstName);
+                kveri = kveri.Where(x => x.FirstName == FirstName);
             }
             if(LastName != "")
             {
-                radnici = radnici.Where(x => x.LastName == LastName);
+                kveri = kveri.Where(x => x.LastName == LastName);
             }
             if(PhoneNumber != "")
             {
-                radnici = radnici.Where(x => x.PhoneNumber == PhoneNumber);
+                kveri = kveri.Where(x => x.PhoneNumber == PhoneNumber);
             }
-            return View(radnici.ToList());
+            List<ApplicationUser> radnici = kveri.ToList();
+            if(radnici.Count == 1)
+            {
+                return View("DetaljiRadnika", radnici[0]);
+            }
+            return View(radnici);
         }
         /// <summary>
         /// Za ajax, vrsi proveru da li radnik postoji i vraca status kod i radnika

@@ -1,0 +1,99 @@
+﻿@model WManager.Models.DetaljiOtpremniceViewModel
+@{
+    ViewBag.Title = "DetaljiOtpremnice";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DetaljiOtpremnice</h2>
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.Otpremnica.OtpremnicaId)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Otpremnica.OtpremnicaId)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Otpremnica.Lokacija)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Otpremnica.Lokacija)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Otpremnica.Datum)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Otpremnica.Datum)
+    </dd>
+</dl>
+<h3>Menadzer</h3>
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.Menadzer.Email)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Menadzer.Email)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Menadzer.FirstName)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Menadzer.FirstName)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Menadzer.LastName)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Menadzer.LastName)
+    </dd>
+</dl>
+<h3>Stavke otpremnice</h3>
+<table class="table" id="otpremniceTable">
+    <thead>
+        <tr>
+            <th>
+               Barkod
+            </th>
+            <th>
+               Naziv
+            </th>
+            <th>
+                Kolicina
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Stavke)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Barkod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Artikal.Naziv)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kolicina)
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+
+    <script src="~/Scripts/datatables/datatables.min.js"></script>
+    <link href="~/Scripts/datatables/datatables.min.css" rel="stylesheet" />
+    <script>
+        $(document).ready(function () {
+            $('#otpremniceTable').DataTable();
+        });
+    </script>
+}

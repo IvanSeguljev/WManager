@@ -1,0 +1,231 @@
+﻿@model WManager.Models.Otpremnica
+
+@{
+    ViewBag.Title = "KreiranjeOtpremnice";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>KreiranjeOtpremnice</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Otpremnica</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.OtpremnicaId, "Otpremnica Id", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.OtpremnicaId, new { htmlAttributes = new { @class = "form-control", @id = "otpremnicaId" } })
+            @Html.ValidationMessageFor(model => model.OtpremnicaId, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-2">
+            <button id="dugmeTrazi" type="button" class="btn btn-default" onclick="proveriOtpremnicu()">Trazi otpremnicu</button>
+        </div>
+    </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Lokacija, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Lokacija, new { htmlAttributes = new { @class = "form-control shouldCheckFirst", @id = "Lokacija" } })
+                @Html.ValidationMessageFor(model => model.Lokacija, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <hr />
+        <div class="form-group">
+            <div class="stavkeOtpremnice" style="padding-left:30%;">
+                <div id="pocetakStavki"></div>
+                
+            </div>
+            <button  onclick="dodajStavku()" class="btn btn-default shouldCheckFirst" type="button"><i class="glyphicon glyphicon-plus"></i> </button>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button onclick="dodajOtpremnicu()" type="button" class="btn btn-default shouldCheckFirst" >dodaj otpremnicu</button>
+                
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+    var brojStavki = 0;
+    var stavke = "<option value=\"0\">Odaberite artikal</option>";
+    $(window).on("load", function () {
+        $.ajax({
+                type: "POST",
+                url: '@Url.Action("VratiSveArtikle","Otpremnica")',
+                data: '{OtpremnicaId: "' + document.getElementById("otpremnicaId").value + '"}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                for (i in data.artikli) {
+                    stavke += "<option value=\"" + data.artikli[i].barkod + "\">" + data.artikli[i].naziv + " (" + data.artikli[i].barkod + ") " + "</option>";
+                }
+                }
+
+            });
+    });
+    function proveriUneto() {
+         var idOtpremnice = document.getElementById("otpremnicaId").value;
+        var mesto = document.getElementById("Lokacija").value;
+        var stavke = document.getElementsByClassName("stavka");
+
+        if (idOtpremnice == "" || mesto == "") {
+            porukaNeuspeh("Polja Id otpremnice i mesto moraju biti popunjena!");
+            return false;
+        }
+        var barcodes = Array();
+        for (var i = 0; i < stavke.length; i++) {
+            
+            if (stavke[i].getElementsByClassName("stavkaBarkod")[0].value == 0) {
+                 porukaNeuspeh("Morate popuniti sve stavke otpremnice!");
+                return false;
+            }
+            if (stavke[i].getElementsByClassName("stavkaKolicina")[0].value <= 0 || (parseInt(stavke[i].getElementsByClassName("stavkaKolicina")[0].getAttribute("max")) < parseInt(stavke[i].getElementsByClassName("stavkaKolicina")[0].value))) {
+               
+                porukaNeuspeh("Kolicina na otpremnici mora biti izmedju 0 i kolicine artikala na stanju!");
+                return false;
+            }
+
+            barcodes.push(stavke[i].getElementsByClassName("stavkaBarkod")[0].value);
+        }
+        var alreadySeen = [];
+        var imaDuplikata = false;
+       barcodes.forEach(function (str) {
+           if (alreadySeen[str]) {
+               porukaNeuspeh("Isti artikal unet vise puta! Barkod artikla:" + str);
+                imaDuplikata = true;
+            }
+            else
+                alreadySeen[str] = true;
+            });
+        if (imaDuplikata) {
+            return false;
+        }
+        return true
+        
+    }
+    function dodajOtpremnicu() {
+        if (proveriUneto()) {
+            var idOtpremnice = document.getElementById("otpremnicaId").value;
+            var mesto = document.getElementById("Lokacija").value;
+            var stavke = document.getElementsByClassName("stavka");
+            var stavkeJSON = "[";
+
+            for (var i = 0; i < stavke.length; i++) {
+                if (i != 0) {
+                    stavkeJSON += ","
+                }
+                console.log(stavke[i].getElementsByClassName("stavkaBarkod")[0].value);
+                stavkeJSON += "{'Barkod':'" + stavke[i].getElementsByClassName("stavkaBarkod")[0].value + "','Kolicina':'" + stavke[i].getElementsByClassName("stavkaKolicina")[0].value + "'}";
+            }
+            stavkeJSON += "]";
+            var otpremnica = "{ 'id':" + idOtpremnice + "," +
+                "'mesto':'" + mesto + "'," +
+                "'stavke':" + stavkeJSON +
+                "}";
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("KreiranjeOtpremnice","Otpremnica")',
+                data: otpremnica,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    window.location.href = "/";
+
+                }
+
+            });
+        }
+    }
+
+    function selektovanArtikal(select) {
+         $.ajax({
+                type: "POST",
+                url: '@Url.Action("VratiStanje","Otpremnica")',
+                data: '{barkod: "' + select.value + '"}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+             success: function (data) {
+                 console.log(data);
+                 select.parentElement.getElementsByTagName("input")[0].value = 1;
+                 select.parentElement.getElementsByTagName("input")[0].setAttribute("max", data.stanje); 
+                 select.parentElement.getElementsByClassName("maxNaStanju")[0].innerHTML = "broj artikala na stanju: " + data.stanje;
+
+                }
+
+            });
+        
+    }
+
+    function proveriOtpremnicu() {
+
+        var otpremnicaId = document.getElementById("otpremnicaId").value
+        
+        if (otpremnicaId !== "") {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("TraziOtpremnicu","Otpremnica")',
+                data: '{OtpremnicaId: "' + document.getElementById("otpremnicaId").value + '"}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    if (data.status == 1) {
+                        porukaNeuspeh("Otpremnica sa unetim Id vec postoji!");
+                        onemoguciPolja();
+                    }
+                    if (data.status == 0) {
+                        porukaUspeh("Ne postoji, nastavi unos");
+                        beLazy();
+                        dodajStavku();
+                        omoguciPolja();
+                    }
+                    if (data.status == 2) {
+                        porukaNeuspeh("Dogodila se greska pri proveri otpremnice!");
+                        onemoguciPolja();
+                    }
+                }
+
+            });
+        }
+        else {
+             porukaNeuspeh("Morate uneti Id otpremnice!");
+        }
+    }
+
+    function beLazy() {
+        document.getElementById("otpremnicaId").setAttribute("readonly", true);
+        document.getElementById("dugmeTrazi").setAttribute("disabled", true);
+    }
+
+    function dodajStavku() {
+        var pocetak = document.getElementById("pocetakStavki");
+        pocetak.insertAdjacentHTML("beforebegin",
+            "<div class=\"stavka\">" +
+            "<h4>stavka " + (brojStavki + 1) + "</h4>" +
+            "<b>Odaberite artikal</b>"+
+            "<select required=\"\"  onchange=\"selektovanArtikal(this)\" class=\"form-control stavkaBarkod\">" +
+            stavke + 
+            "</select><br/>" +
+            "<i class=\"maxNaStanju\">Broj artikala na stanju: </i><br>" +
+            "<b>Odaberite broj artikala za dodavanje na otpremnicu</b>"+
+            "<input required=\"\"  min=\"0\" value=\"1\" type=\"number\" class=\"form-control stavkaKolicina\"/>" +
+           
+            "</div><br>"
+            
+        )
+        brojStavki += 1;
+
+    }
+    </script>
+}

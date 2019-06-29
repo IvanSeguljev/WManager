@@ -9,16 +9,19 @@ namespace WManager.Models
 {
     public class Otpremnica
     {
-        [Key]
-        [Required]
+        
+        
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int OtpremnicaId { get; set; }
         [Required]
+        [ForeignKey("Menadzer")]
         public string MenadzerId { get; set; }
-        [ForeignKey("MenadzerId")]
+        
         public ApplicationUser Menadzer { get; set; }
         [Required]
         public string Lokacija { get; set; }
         [Required]
         public DateTime Datum { get; set; }
+        public List<StavkaOtpremnice> Stavke { get; set; }
     }
 }

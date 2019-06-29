@@ -11,7 +11,7 @@ namespace WManager.Migrations
                 "dbo.Otpremnicas",
                 c => new
                     {
-                        OtpremnicaId = c.Int(nullable: false, identity: true),
+                        OtpremnicaId = c.Int(nullable: false, identity: false),
                         MenadzerId = c.String(nullable: false, maxLength: 128),
                         Lokacija = c.String(nullable: false),
                         Datum = c.DateTime(nullable: false),
