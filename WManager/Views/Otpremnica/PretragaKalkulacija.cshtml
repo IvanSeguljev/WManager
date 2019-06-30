@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>TraziKalkulaciju</h2>
 
-@using (Html.BeginForm("TraziKalkulaciju", "Otpremnica", FormMethod.Get)) 
+
+@using (Html.BeginForm("TraziKalkulaciju", "Otpremnica", FormMethod.Get, new { @class="tableForm"})) 
 {
     @Html.AntiForgeryToken()
     
@@ -35,18 +35,14 @@
             @Html.LabelFor(model => model.Datum, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Datum, new { htmlAttributes = new { @class = "form-control" } })
-              <b>Uneti datum mora biti formata: mesec/dan/godina </b>
+              <p style="color:#ff9955">Uneti datum mora biti formata: mesec/dan/godina </p>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Trazi" class="btn btn-default" />
+                <input type="submit" value="Trazi otpremnicu" class="btnTrazi" style="margin-left:70px;" />
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

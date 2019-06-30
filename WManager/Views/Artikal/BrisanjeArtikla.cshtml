@@ -5,15 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Brisanje artikla</h2>
 
 
-@using (Html.BeginForm("BrisanjeArtikla", "Artikal", FormMethod.Post))
+
+@using (Html.BeginForm("BrisanjeArtikla", "Artikal", FormMethod.Post, new { @class="tableForm"}))
 {
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <h4>Artikal</h4>
+    <h4>Brisanje artikla</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
@@ -23,7 +23,7 @@
             @Html.ValidationMessageFor(model => model.Barkod, "", new { @class = "text-danger" })
         </div>
         <div class="col-md-2">
-            <button type="button" class="btn btn-default" onclick="proveriArtikal()">Trazi artikal</button>
+            <button type="button" class="btnTrazi" onclick="proveriArtikal()">Trazi artikal</button>
         </div>
     </div>
     <div class="form-group">
@@ -33,15 +33,13 @@
     </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <button type="submit" class="btn btn-default shouldCheckFirst">Obrisi</button>
+                <button type="submit" class="btnBrisi shouldCheckFirst">Obrisi</button>
             </div>
         </div>
     </div>
     }
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+    
 
     @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")

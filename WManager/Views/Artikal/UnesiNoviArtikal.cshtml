@@ -4,26 +4,26 @@
     ViewBag.Title = "UnesiNoviArtikal";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+    
 
-<h2>UnesiNoviArtikal</h2>
 
 
-@using (Html.BeginForm("UnesiNoviArtikal","Artikal",FormMethod.Post)) 
+@using (Html.BeginForm("UnesiNoviArtikal","Artikal",FormMethod.Post, new { @class="tableForm"}))
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Artikal</h4>
+        <h4>Unesi novi artikal</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
         @Html.LabelFor(model => model.Barkod, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
+        <div class="col-md-6">
             @Html.EditorFor(model => model.Barkod, new { htmlAttributes = new { @class = "form-control", @id = "barkodPolje",@onkeyup="onemoguciPolja()" } })
             @Html.ValidationMessageFor(model => model.Barkod, "", new { @class = "text-danger" })
         </div>
-        <div class="col-md-2">
-            <button type="button" class="btn btn-default" onclick="proveriArtikal()">Trazi artikal</button>
+        <div class="col-md-6">
+            <button type="button" class="btnTrazi" onclick="proveriArtikal()">Trazi artikal</button>
         </div>
     </div>
 
@@ -61,15 +61,13 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <button type="submit" class="btn btn-default shouldCheckFirst">Unesi novi</button>
+                <button type="submit" class="btnTrazi shouldCheckFirst" style="margin-left: 70px !important">Unesi novi</button>
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Nazad na listu artikala", "Index")
-</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

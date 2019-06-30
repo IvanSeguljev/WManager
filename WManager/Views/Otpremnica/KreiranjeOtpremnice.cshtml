@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>KreiranjeOtpremnice</h2>
 
-@using (Html.BeginForm())
+
+@using (Html.BeginForm(new { @class="tableForm"}))
 {
     @Html.AntiForgeryToken()
 
@@ -22,7 +22,7 @@
             @Html.ValidationMessageFor(model => model.OtpremnicaId, "", new { @class = "text-danger" })
         </div>
         <div class="col-md-2">
-            <button id="dugmeTrazi" type="button" class="btn btn-default" onclick="proveriOtpremnicu()">Trazi otpremnicu</button>
+            <button id="dugmeTrazi" type="button" class="btnTrazi" onclick="proveriOtpremnicu()">Trazi otpremnicu</button>
         </div>
     </div>
 
@@ -39,22 +39,20 @@
                 <div id="pocetakStavki"></div>
                 
             </div>
-            <button  onclick="dodajStavku()" class="btn btn-default shouldCheckFirst" type="button"><i class="glyphicon glyphicon-plus"></i> </button>
+            <button  onclick="dodajStavku()" class="btnTrazi shouldCheckFirst" type="button"><i class="glyphicon glyphicon-plus"></i> </button>
         </div>
 
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <button onclick="dodajOtpremnicu()" type="button" class="btn btn-default shouldCheckFirst" >dodaj otpremnicu</button>
+                <button onclick="dodajOtpremnicu()" type="button" class="btnTrazi shouldCheckFirst" >Dodaj otpremnicu</button>
                 
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
@@ -212,13 +210,13 @@
         var pocetak = document.getElementById("pocetakStavki");
         pocetak.insertAdjacentHTML("beforebegin",
             "<div class=\"stavka\">" +
-            "<h4>stavka " + (brojStavki + 1) + "</h4>" +
+            "<h4>Stavka " + (brojStavki + 1) + " :</h4>" +"<hr>"+
             "<b>Odaberite artikal</b>"+
             "<select required=\"\"  onchange=\"selektovanArtikal(this)\" class=\"form-control stavkaBarkod\">" +
             stavke + 
             "</select><br/>" +
-            "<i class=\"maxNaStanju\">Broj artikala na stanju: </i><br>" +
-            "<b>Odaberite broj artikala za dodavanje na otpremnicu</b>"+
+            "<i class=\"maxNaStanju\">Broj artikala na stanju: </i><br><br>" +
+            "<b>Odaberite broj artikala za dodavanje na otpremnicu</b><br>"+
             "<input required=\"\"  min=\"0\" value=\"1\" type=\"number\" class=\"form-control stavkaKolicina\"/>" +
            
             "</div><br>"

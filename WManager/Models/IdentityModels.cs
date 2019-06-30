@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Security.Claims;
@@ -13,7 +14,10 @@ namespace WManager.Models
     {
        
         public ICollection<Otpremnica> Otpremnice { get; set; }
+
+        [Display(Name = "Prezime")]
         public string LastName { get; set; }
+        [Display(Name = "Ime")]
         public string FirstName { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

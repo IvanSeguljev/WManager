@@ -5,54 +5,54 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Detalji artikla</h2>
+    <form class="tableForm">
+        <h2>Detalji artikla</h2>
 
-<div>
-    <h4>Artikal</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Barkod)
-        </dt>
+        <div>
+            <h4>Artikal</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Barkod)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Barkod)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Naziv)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Barkod)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Naziv)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Naziv)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Naziv)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Kolicina)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Kolicina)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Kolicina)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Kolicina)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ZemljaPorekla)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ZemljaPorekla)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ZemljaPorekla)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.ZemljaPorekla)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Proizvodjac)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Proizvodjac)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Proizvodjac)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Proizvodjac)
+                </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Barkod }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            </dl>
+        </div>
+    </form>
+
+

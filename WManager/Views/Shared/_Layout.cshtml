@@ -14,57 +14,61 @@
             <div class="navbar-heade header-navr">
                 <button class="toggleSidebar" onclick="openSidebar('sidebar')"> <img src="~/Content/Images/menu.png" alt="• • •" class="menu-img" /> </button>
             </div>
+            <button class="nav navbar-nav navbar-left btnHome">@Html.ActionLink("Home", "Index", "Home")</button>
             <div>
-                <ul class="nav navbar-nav nav-sidebar" id="sidebar" style="display:none;">
+                
+                    <ul class="nav navbar-nav nav-sidebar" id="sidebar" style="display:none;">
 
-                    @*zameniti nazive*@
+                        @*zameniti nazive*@
 
-                    <li class="sideItem" onclick="openSubitem('subitem')" style="padding-top: 10px; padding-bottom: 10px; line-height: 20px;">
-                        Artikli
-                    </li>
-                    <li>
-                        <ul class="nav navbar-nav subitem" id="subitem" style="display:none; width: 100% !important">
-                            <li>@Html.ActionLink("Lista artikala", "Index", "Artikal")</li>
-                            @if (User.IsInRole("Menadzer"))
-                            {
-                                <li>@Html.ActionLink("Novi artikal", "UnesiNoviArtikal", "Artikal")</li>
-                            }
-                            <li>@Html.ActionLink("Izmena artikla", "IzmeniArtikal", "Artikal")</li>
-                            <li>@Html.ActionLink("Brisanje artikla", "BrisanjeArtikla", "Artikal")</li>
-                            <li>@Html.ActionLink("Skidanje sa stanja", "SkidanjeSaStanja", "Artikal")</li>
-                            <li>@Html.ActionLink("Pretraga artikala", "PretragaArtikala", "Artikal")</li>
-
-                        </ul>
-
-                    </li>
-                    @if (User.IsInRole("Menadzer"))
-                    {
-                        <li class="sideItem" onclick="openSubitem2('subitem2')">
-                            Radnici
+                        <li class="sideItem" onclick="openSubitem('subitem')" style="padding-top: 10px; padding-bottom: 10px; line-height: 20px;">
+                            Artikli
                         </li>
                         <li>
-                            <ul class="nav navbar-nav subitem" id="subitem2" style="display:none; width: 100% !important">
-                                <li>@Html.ActionLink("Lista radnika", "Index", "Radnik")</li>
-                                <li>@Html.ActionLink("Izmena radnika", "IzmenaRadnika", "Radnik")</li>
-                                <li>@Html.ActionLink("brisanje radnika", "BrisanjeRadnika", "Radnik")</li>
-                                <li>@Html.ActionLink("trazi radnika", "TraziRadnika", "Radnik")</li>
-                                <li>@Html.ActionLink("Izmena radnika", "IzmeniRadnika", "Radnik")</li>
-                                <li>@Html.ActionLink("dodavanje radnika", "Register", "Account")</li>
+                            <ul class="nav navbar-nav subitem" id="subitem" style="display:none; width: 100% !important">
+                                <li>@Html.ActionLink("Lista artikala", "Index", "Artikal")</li>
+                                @if (User.IsInRole("Menadzer"))
+                                {
+                                    <li>@Html.ActionLink("Novi artikal", "UnesiNoviArtikal", "Artikal")</li>
+                                }
+                                <li>@Html.ActionLink("Izmena artikla", "IzmeniArtikal", "Artikal")</li>
+                                <li>@Html.ActionLink("Brisanje artikla", "BrisanjeArtikla", "Artikal")</li>
+                                <li>@Html.ActionLink("Skidanje sa stanja", "SkidanjeSaStanja", "Artikal")</li>
+                                <li>@Html.ActionLink("Pretraga artikala", "PretragaArtikala", "Artikal")</li>
+
                             </ul>
 
                         </li>
-                        <li class="sideItem" onclick="openSubitem3('subitem3')">
-                            Otpremnice
-                        </li>
-                        <li>
-                            <ul class="nav navbar-nav subitem" id="subitem3" style="display:none; width: 100% !important">
-                                <li>@Html.ActionLink("Kreiranje otpremnice", "KreiranjeOtpremnice", "Otpremnica")</li>
-                                <li>@Html.ActionLink("Pretraga kalkulacija", "PretragaKalkulacija", "Otpremnica")</li>
-                            </ul>
+                        @if (User.IsInRole("Menadzer"))
+                        {
+                            <li class="sideItem" onclick="openSubitem2('subitem2')">
+                                Radnici
+                            </li>
+                            <li>
+                                <ul class="nav navbar-nav subitem" id="subitem2" style="display:none; width: 100% !important">
+                                    <li>@Html.ActionLink("Lista radnika", "Index", "Radnik")</li>
+                                    <li>@Html.ActionLink("Izmena radnika", "IzmenaRadnika", "Radnik")</li>
+                                    <li>@Html.ActionLink("brisanje radnika", "BrisanjeRadnika", "Radnik")</li>
+                                    <li>@Html.ActionLink("trazi radnika", "TraziRadnika", "Radnik")</li>
 
-                        </li>
-                    }
+                                    <li>@Html.ActionLink("dodavanje radnika", "Register", "Account")</li>
+                                </ul>
+
+                            </li>
+                            <li class="sideItem" onclick="openSubitem3('subitem3')">
+                                Otpremnice
+                            </li>
+                            <li>
+                                <ul class="nav navbar-nav subitem" id="subitem3" style="display:none; width: 100% !important">
+                                    <li>@Html.ActionLink("Kreiranje otpremnice", "KreiranjeOtpremnice", "Otpremnica")</li>
+                                    <li>@Html.ActionLink("Pretraga kalkulacija", "PretragaKalkulacija", "Otpremnica")</li>
+                                    <li>@Html.ActionLink("Lista otpremnica", "TraziKalkulaciju", "Otpremnica")</li>
+                                </ul>
+
+                            </li>
+                        }
                     </ul>
+                
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
