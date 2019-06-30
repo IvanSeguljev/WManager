@@ -25,7 +25,10 @@
                     <li>
                         <ul class="nav navbar-nav subitem" id="subitem" style="display:none; width: 100% !important">
                             <li>@Html.ActionLink("Lista artikala", "Index", "Artikal")</li>
-                            <li>@Html.ActionLink("Novi artikal", "UnesiNoviArtikal", "Artikal")</li>
+                            @if (User.IsInRole("Menadzer"))
+                            {
+                                <li>@Html.ActionLink("Novi artikal", "UnesiNoviArtikal", "Artikal")</li>
+                            }
                             <li>@Html.ActionLink("Izmena artikla", "IzmeniArtikal", "Artikal")</li>
                             <li>@Html.ActionLink("Brisanje artikla", "BrisanjeArtikla", "Artikal")</li>
                             <li>@Html.ActionLink("Skidanje sa stanja", "SkidanjeSaStanja", "Artikal")</li>
@@ -34,26 +37,34 @@
                         </ul>
 
                     </li>
-                    <li class="sideItem" onclick="openSubitem2('subitem2')">
-                        Radnici
-                    </li>
-                    <li>
-                        <ul class="nav navbar-nav subitem" id="subitem2" style="display:none; width: 100% !important">
-                            <li>@Html.ActionLink("Lista radnika", "Index", "Radnik")</li>
-                            <li>@Html.ActionLink("Izmena radnika", "IzmenaRadnika", "Radnik")</li>
-                            <li>@Html.ActionLink("brisanje radnika", "BrisanjeRadnika", "Radnik")</li>
-                            <li>@Html.ActionLink("trazi radnika", "TraziRadnika", "Radnik")</li>
-                            <li>@Html.ActionLink("Izmena radnika", "IzmeniRadnika", "Radnik")</li>
-                            <li>@Html.ActionLink("dodavanje radnika", "Register", "Account")</li>
-                            <li>@Html.ActionLink("Kreiranje otpremnice", "KreiranjeOtpremnice", "Otpremnica")</li>
-                            <li>@Html.ActionLink("Pretraga kalkulacija", "PretragaKalkulacija", "Otpremnica")</li>
+                    @if (User.IsInRole("Menadzer"))
+                    {
+                        <li class="sideItem" onclick="openSubitem2('subitem2')">
+                            Radnici
+                        </li>
+                        <li>
+                            <ul class="nav navbar-nav subitem" id="subitem2" style="display:none; width: 100% !important">
+                                <li>@Html.ActionLink("Lista radnika", "Index", "Radnik")</li>
+                                <li>@Html.ActionLink("Izmena radnika", "IzmenaRadnika", "Radnik")</li>
+                                <li>@Html.ActionLink("brisanje radnika", "BrisanjeRadnika", "Radnik")</li>
+                                <li>@Html.ActionLink("trazi radnika", "TraziRadnika", "Radnik")</li>
+                                <li>@Html.ActionLink("Izmena radnika", "IzmeniRadnika", "Radnik")</li>
+                                <li>@Html.ActionLink("dodavanje radnika", "Register", "Account")</li>
+                            </ul>
 
-                        </ul>
+                        </li>
+                        <li class="sideItem" onclick="openSubitem3('subitem3')">
+                            Otpremnice
+                        </li>
+                        <li>
+                            <ul class="nav navbar-nav subitem" id="subitem3" style="display:none; width: 100% !important">
+                                <li>@Html.ActionLink("Kreiranje otpremnice", "KreiranjeOtpremnice", "Otpremnica")</li>
+                                <li>@Html.ActionLink("Pretraga kalkulacija", "PretragaKalkulacija", "Otpremnica")</li>
+                            </ul>
 
-                    </li>
-
-
-                </ul>
+                        </li>
+                    }
+                    </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
@@ -70,24 +81,38 @@
     <script>
 
     function openSidebar() {
-        if (document.getElementById('sidebar').style.display = 'none')
+        if (document.getElementById('sidebar').style.display == 'none') {
             document.getElementById('sidebar').style.display = 'inline-grid';
-        else if (document.getElementById('sidebar').style.display = 'inline-grid')
+        }
+        else if (document.getElementById('sidebar').style.display == 'inline-grid') {
             document.getElementById('sidebar').style.display = 'none';
+        }
        
     }
 
     function openSubitem() {
-        if (document.getElementById('subitem').style.display = 'none')
+        if (document.getElementById('subitem').style.display == 'none') {
             document.getElementById('subitem').style.display = 'inline-grid';
-        else if (document.getElementById('subitem').style.display = 'inline-grid')
+        }
+        else if (document.getElementById('subitem').style.display == 'inline-grid') {
             document.getElementById('subitem').style.display = 'none';
+        }
     }
      function openSubitem2() {
-        if (document.getElementById('subitem2').style.display = 'none')
-            document.getElementById('subitem2').style.display = 'inline-grid';
-        else if (document.getElementById('subitem2').style.display = 'inline-grid')
-            document.getElementById('subitem2').style.display = 'none';
+         if (document.getElementById('subitem2').style.display == 'none') {
+             document.getElementById('subitem2').style.display = 'inline-grid';
+         }
+         else if (document.getElementById('subitem2').style.display == 'inline-grid') {
+             document.getElementById('subitem2').style.display = 'none';
+         }
+    }
+    function openSubitem3() {
+        if (document.getElementById('subitem3').style.display == 'none') {
+            document.getElementById('subitem3').style.display = 'inline-grid';
+        }
+        else if (document.getElementById('subitem3').style.display == 'inline-grid') {
+            document.getElementById('subitem3').style.display = 'none';
+        }
     }
 
 

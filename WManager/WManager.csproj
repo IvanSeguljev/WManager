@@ -220,8 +220,10 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\background.jpg" />
     <Content Include="Content\Images\Logo.png" />
     <Content Include="Content\Images\menu.png" />
+    <Content Include="Content\Images\support.png" />
     <Content Include="Content\Login\main.css" />
     <Content Include="Content\Login\util.css" />
     <Content Include="Content\notifications\Lobibox.min.css" />

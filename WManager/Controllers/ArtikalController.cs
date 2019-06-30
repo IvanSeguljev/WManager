@@ -7,6 +7,7 @@ using WManager.Models;
 
 namespace WManager.Controllers
 {
+    [Authorize]
     public class ArtikalController : Controller
     {
         ApplicationDbContext context;
@@ -98,6 +99,7 @@ namespace WManager.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Authorize(Roles ="Menadzer")]
         public ActionResult BrisanjeArtikla()
         {
             return View();
@@ -108,6 +110,7 @@ namespace WManager.Controllers
         /// </summary>
         /// <param name="Barkod">Barkod artikla za brisanje</param>
         /// <returns></returns>
+        [Authorize(Roles = "Menadzer")]
         [HttpPost]
         public ActionResult BrisanjeArtikla(string Barkod)
         {
